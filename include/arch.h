@@ -53,16 +53,6 @@
 #define F77NAME(x) x ## _
 #endif
 
-#if defined(SGI) && !defined(SGI_DEC)
-#define SGI_DEC
-
-extern "C" {
-	void mkidxname() {}
-	void mkdatname() {}
-}
-#endif
-
-
 // Type conversion.
 
 typedef int ARint;
