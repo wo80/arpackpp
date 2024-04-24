@@ -20,28 +20,6 @@
 #ifndef BLAS1C_H
 #define BLAS1C_H
 
-// ASSUM
-
-inline float assum(const ARint &n, const float dx[], const ARint &incx) {
-  return F77NAME(sasum)(&n, dx, &incx);
-} // assum (float)
-
-inline double assum(const ARint &n, const double dx[], const ARint &incx) {
-  return F77NAME(dasum)(&n, dx, &incx);
-} // assum (double)
-
-#ifdef ARCOMP_H
-inline float assum(const ARint &n, const arcomplex<float> dx[],
-                   const ARint &incx) {
-  return F77NAME(scasum)(&n, dx, &incx);
-} // assum (arcomplex<float>)
-
-inline double assum(const ARint &n, const arcomplex<double> dx[],
-                    const ARint &incx) {
-  return F77NAME(dzasum)(&n, dx, &incx);
-} // assum (arcomplex<double>)
-#endif
-
 // AXPY
 
 inline void axpy(const ARint &n, const float &da, const float dx[],
@@ -106,40 +84,6 @@ inline double dot(const ARint &n, const double dx[], const ARint &incx,
   return F77NAME(ddot)(&n, dx, &incx, dy, &incy);
 } // dot (double)
 
-#ifdef ARCOMP_H
-inline arcomplex<float> dotc(const ARint &n, const arcomplex<float> dx[], 
-                           const ARint &incx,const arcomplex<float> dy[], 
-                           const ARint &incy) {
-  arcomplex<float> tmp;
-  F77NAME(cdotc)(&tmp, &n, dx, &incx, dy, &incy);
-  return tmp;
-} // dotc (arcomplex<float>)
-
-inline arcomplex<double> dotc(const ARint &n, const arcomplex<double> dx[], 
-                            const ARint &incx, const arcomplex<double> dy[], 
-                            const ARint &incy) {
-  arcomplex<double> tmp;
-  F77NAME(zdotc)(&tmp, &n, dx, &incx, dy, &incy);
-  return tmp;
-} // dotc (arcomplex<double>)
-
-inline arcomplex<float> dotu(const ARint &n, const arcomplex<float> dx[], 
-                           const ARint &incx, const arcomplex<float> dy[], 
-                           const ARint &incy) {
-  arcomplex<float> tmp;
-  F77NAME(cdotu)(&tmp, &n, dx, &incx, dy, &incy);
-  return tmp;
-} // dotu (arcomplex<float>)
-
-inline arcomplex<double> dotu(const ARint &n, const arcomplex<double> dx[], 
-                            const ARint &incx, const arcomplex<double> dy[], 
-                            const ARint &incy) {
-  arcomplex<double> tmp;
-  F77NAME(zdotu)(&tmp, &n, dx, &incx, dy, &incy);
-  return tmp;
-} // dotu (arcomplex<double>)
-#endif
-
 // NRM2
 
 inline float nrm2(const ARint &n, const float dx[], const ARint &incx) {
@@ -161,29 +105,6 @@ inline double nrm2(const ARint &n, const arcomplex<double> dx[],
   return F77NAME(dznrm2)(&n, dx, &incx);
 } // nrm2 (complex <double>)
 #endif
-
-// ROT
-
-inline void rot(const ARint &n, float dx[], const ARint &incx, float dy[],
-           const ARint &incy, const float &c, const float &s) {
-  F77NAME(srot)(&n, dx, &incx, dy, &incy, &c, &s);
-} // rot (float)
-
-inline void rot(const ARint &n, double dx[], const ARint &incx, 
-                double dy[], const ARint &incy, const double &c, 
-                const double &s) {
-  F77NAME(drot)(&n, dx, &incx, dy, &incy, &c, &s);
-} // rot (double)
-
-// ROTG
-
-inline void rotg(float &da, float &db, float &c, float &s) {
-  F77NAME(srotg)(&da, &db, &c, &s);
-} // rotg (float)
-
-inline void rotg(double &da, double &db, double &c, double &s) {
-  F77NAME(drotg)(&da, &db, &c, &s);
-} // rotg (double)
 
 // SCAL
 
@@ -215,52 +136,6 @@ inline void sscal(const ARint &n, const double &da, arcomplex<double> dx[],
                   const ARint &incx) {
   F77NAME(zdscal)(&n, &da, dx, &incx);
 } // sscal (arcomplex<double>)
-#endif
-
-// SWAP
-
-inline void swap(const ARint &n, float dx[], const ARint &incx,
-                 float dy[], const ARint &incy) {
-  F77NAME(sswap)(&n, dx, &incx, dy, &incy);
-} // swap (float)
-
-inline void swap(const ARint &n, double dx[], const ARint &incx,
-                 double dy[], const ARint &incy) {
-  F77NAME(dswap)(&n, dx, &incx, dy, &incy);
-} // swap (double)
-
-#ifdef ARCOMP_H
-inline void swap(const ARint &n, arcomplex<float> dx[], const ARint &incx,
-                 arcomplex<float> dy[], const ARint &incy) {
-  F77NAME(cswap)(&n, dx, &incx, dy, &incy);
-} // swap (arcomplex<float>)
-
-inline void swap(const ARint &n, arcomplex<double> dx[], const ARint &incx,
-                 arcomplex<double> dy[], const ARint &incy) {
-  F77NAME(zswap)(&n, dx, &incx, dy, &incy);
-} // swap (arcomplex<double>)
-#endif
-
-// AMAX
-
-inline ARint amax(const ARint &n, const float dx[], const ARint &incx) {
-  return F77NAME(isamax)(&n, dx, &incx);
-} // amax (float)
-
-inline ARint amax(const ARint &n, const double dx[], const ARint &incx) {
-  return F77NAME(idamax)(&n, dx, &incx);
-} // amax (double)
-
-#ifdef ARCOMP_H
-inline ARint amax(const ARint &n, const arcomplex<float> dx[], 
-                    const ARint &incx) {
-  return F77NAME(icamax)(&n, dx, &incx);
-} // amax (arcomplex<float>)
-
-inline ARint amax(const ARint &n, const arcomplex<double> dx[], 
-                    const ARint &incx) {
-  return F77NAME(izamax)(&n, dx, &incx);
-} // amax (arcomplex<double>)
 #endif
 
 // GEMV
