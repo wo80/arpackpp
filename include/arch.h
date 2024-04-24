@@ -39,21 +39,6 @@
   #define STL_VECTOR_H
 #endif
 
-// UMFPACK parameters.
-// These parameters are used by UMFPACK library functions. Normally
-// they are not modified by the user. To use the default value, set
-// the parameter to zero. For a complete description of all UMFPACK 
-// parameters, see the library documentation. 
-
-#define UICNTL7 0 // icntl(7). Block size for the blas (machine-dependent).
-#define UICNTL5 0 // icntl(5). Number of columns to examine during pivot search.
-#define UCNTL2  0 // cntl(2). Amalgamation parameter.
-#define UKEEP7  0 // keep(7). Absolute number of elements a column must have
-                  // to be considered "dense".
-#define UKEEP8  0 // keep(8). Relative number of elements a column must have
-                  // to be considered "dense". Dense columns have more
-                  // than max{0,UMFABDEN,UMFREDEN*sqrt(n)} elements.
-
 // Line length used when reading a dense matrix from a file.
 
 #define LINELEN 256
