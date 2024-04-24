@@ -58,13 +58,5 @@
 typedef int ARint;
 typedef int ARlogical;
 
-#ifdef __SUNPRO_CC
-
-  typedef int bool;
-  int true  = 1;
-  int false = 0;
-
-#endif
-
 
 #endif // ARCH_H
